@@ -22,10 +22,15 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "codecov.io": "^0.1.6",
+    "commitizen": "^2.8.6",
+    "cz-conventional-changelog": "^1.2.0",
     "ghooks": "^1.3.2",
     "istanbul": "^0.3.20",
     "mocha": "^2.5.3",
-    "should": "^7.1.0"
+    "semantic-release": "^4.3.5",
+    "semantic-release-cli": "^1.4.1",
+    "should": "^7.1.0",
+    "travis-ci": "^2.1.0"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -56,11 +61,16 @@
     "url": "https://github.com/renonick87/Rich-Error"
   },
   "scripts": {
-    "test": "mocha test/index.test.js"
+    "commit": "git-cz",
+    "test": "mocha test/index.test.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "version": "0.0.1",
   "config": {
-    "ghooks" : {
+    "ghooks": {
       "pre-commit": "npm run test"
+    }
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }
