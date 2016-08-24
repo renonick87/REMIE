@@ -58,5 +58,9 @@
   "scripts": {
     "test": "mocha test/index.test.js"
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "config": {
+    "ghooks" : {
+      "pre-commit": "npm run test"
+  }
 }
