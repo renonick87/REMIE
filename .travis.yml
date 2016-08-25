@@ -9,7 +9,7 @@ node_js:
   - '6.3.1'
 before_install:
   # guessing this works vvv
-  - sudo apt-get install libgnome-keyring-dev,
+  #- sudo apt-get install libgnome-keyring-dev,
   - npm i -g npm@^3.10.3
 before_script:
   - npm prune
@@ -20,8 +20,8 @@ after_success:
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
-addons:
-  apt:
-    packages:
-      - libgnome-keyring-dev
+#addons:
+ # apt:
+  #  packages:
+   #   - libgnome-keyring-dev
       # also guessing on this ^^^
