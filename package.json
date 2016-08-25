@@ -18,7 +18,7 @@
   "dependencies": {
     "i18next": "^3.4.1"
   },
-  "description": "",
+  "description": "copy of Rich Error Module for egghead lessons",
   "devDependencies": {
     "chai": "^3.5.0",
     "codecov.io": "^0.1.6",
@@ -63,7 +63,7 @@
   "scripts": {
     "commit": "git-cz",
     "test": "mocha test/index.test.js -w",
-    "test:single": "mocha test/index.test.js",
+    "test:single": "istanbul cover -x * .test.js _mocha -- -R spec test/index.test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "config": {
