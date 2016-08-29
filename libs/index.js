@@ -2,7 +2,9 @@
  * ******************** Module Variables & Constants
  * ************************************************** */
 
-var i18next = require('i18next')
+var i18next = require('i18next'), 
+  EventEmitter = require('events').EventEmitter,
+  inherits = require('util').inherits;
 const ERROR_LEVEL_FATAL = 'fatal',
   ERROR_LEVEL_ERROR = 'error',
   ERROR_LEVEL_WARN = 'warn',
@@ -13,28 +15,64 @@ const ERROR_LEVEL_FATAL = 'fatal',
 const DEFAULT_ERROR_MESSAGE = "Internal server error!",
   DEFAULT_ERROR_LOCALE = "server.500.generic";
 
+
+
 /* ************************************************** *
  * ******************** RichError Class
  * ************************************************** */
 
-class RichError {
+class REMY {
   constructor(err, options, i18next, locale) {
-    this.build(err, options, locale);
+    console.log('constructor was called')
+    console.log(richError)
+    //this.build(err, options, locale);
+    //this.set({i18next: i18next})
+    inherits(RichError, EventEmitter)
+    richError.on('on-internal-error', function(err){
+      console.log("Internal Error %s", err.internalMessage);
+    });
+    var event = 'on-internal-error',
+      err = {}
+    err.code = 'wooh!'
+    //err.internalMessage = 'internal message2'
+    if (err.internalMessage) { //does not run if undefined or null
+      richError.emit(event, err)
+    } else {
+      console.log('didnt run')
+    }
   };
+
+  create(err, options, i18next, locale) {
+    console.log('create was called')
+    //let RichError = new richError(err, options, i18next, locale);
+    if (richError.internalMessage) {
+      this.on(RichError.internalMessage); //signals listener in example
+    }
+    return new REMY(err, options, i18next, locale)
+  }
 
   static buildInternal(err, options) { 
     console.log('static was called') //temporary
     options.internalOnly = true;
-    return new RichError(err, options);
+    return new REMY(err, options);
   };
 
   copy() {
-    return new RichError(this.toObject());
+    console.log('copy was called')
+    return new REMY(this.toObject());
   };
+/*
+  on(err) {
+    console.log('on was called')
+    if (err){
+      console.log(err)
+      //this.emit('on-internal-error')
+    }
+  }
 
-/* ************************************************** *
- * ******************** Private Methods
- * ************************************************** */
+  /* ************************************************** *
+   * ******************** Private Methods
+   * ************************************************** */
 
   guessStatusCodeOfLocale(locale) {
     console.log("guessStatusCodeOfLocale") //temp
@@ -58,7 +96,7 @@ class RichError {
         return 500;
     }
   };
-
+/*
   buildFromSystemError(err = new Error(DEFAULT_ERROR_MESSAGE), options = {}) { // 'Internal server error!'
     console.log('buildFromSystemError was called') //temp
     let richErrorObject = {};
@@ -175,7 +213,7 @@ class RichError {
     this.statusCode = richErrorObject.statusCode;
 
     return this;
-  };
+  };*/
 
   toObject() {
     console.log('toObject was called') // temp
@@ -245,4 +283,35 @@ class RichError {
     }
   }
 };
-module.exports = RichError
+
+
+/* ************************************************** *
+ * ******************** Require Other Classes
+ * ************************************************** */
+var RichError = require('./RichError.js'),
+  //richerror = (RichError)(this),
+  richError = new RichError()
+
+//let RichError = (require('./RichError.js'))(this)
+
+module.exports = REMY
+
+
+/*
+var Clock = require('./RichError');  
+var clock = Clock();
+
+clock.on('tic', function(t) {  
+  console.log('tic:', t);
+});
+
+clock.on('toc', function(t) {  
+  console.log('toc:', t);
+});
+
+clock.start();
+
+// stop the clock 10 seconds after
+setTimeout(function() {  
+  clock.stop();
+}, 10e3)*/
