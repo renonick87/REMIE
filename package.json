@@ -16,12 +16,15 @@
     }
   ],
   "dependencies": {
-    "i18next": "^3.4.1"
+    "i18next": "^3.4.1",
+    "events": "1.1.1",
+    "util": "0.10.3"
   },
   "description": "copy of Rich Error Module for egghead lessons",
   "devDependencies": {
     "chai": "^3.5.0",
     "codecov.io": "^0.1.6",
+    "events": "^1.1.1",
     "istanbul": "^0.3.22",
     "mocha": "^2.5.3",
     "should": "^7.1.0",

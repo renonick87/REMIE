@@ -15,6 +15,42 @@ const ERROR_LEVEL_FATAL = 'fatal',
 const DEFAULT_ERROR_MESSAGE = "Internal server error!",
   DEFAULT_ERROR_LOCALE = "server.500.generic";
 
+//let options = {}
+
+
+/*
+i18next.init({
+  lng: "en",
+  nsSeparator: false,
+  keySeparator: true,
+  //load:['en-US', 'fr', 'es'],
+  //fallbackLng: 'en-US',
+  //backend: {
+  //  loadPath: '/language/static/{{lng}}/{{ns}}.json'
+  //},
+  resources: {
+    en: {
+      translation: { // did a lot of searching, still unsure how this works
+        "server": {
+          "400": {
+            "forbidden": "this is how it's done"
+          }
+        },
+        "server.403.forbidden" : "it might be working",
+        // keySeparator must be set to false else 'server.400' is not recognized with '.'
+        "server" : "this one works"
+      }
+    }
+  }
+}, (err, t) => {
+  const hw = i18next.t(err); // hw = 'hello world'
+}
+)
+
+let test = i18next.t('server.400.forbidden')
+console.log(test)*/
+
+
 
 
 /* ************************************************** *
@@ -24,7 +60,6 @@ const DEFAULT_ERROR_MESSAGE = "Internal server error!",
 class REMIE {
   constructor(err = {}, options = {}, i18next, locale) {
     console.log('constructor was called')
-    console.log(richError)
     this.setDefault();
     let event = 'on-internal-error'
     EventEmitter.call(this)
@@ -35,7 +70,8 @@ class REMIE {
     if (richError.internalMessage) {
       this.on(RichError.internalMessage); //signals listener in example
     }
-    return new REMIE(err, options, i18next, locale)
+    console.log(new RichError(err, options, i18next, locale))
+    return new RichError(err, options, i18next, locale)
   }
 
   static buildInternal(err, options) { 
@@ -53,28 +89,7 @@ class REMIE {
    * ******************** Private Methods
    * ************************************************** */
 
-  guessStatusCodeOfLocale(locale) {
-    console.log("guessStatusCodeOfLocale") //temp
-    switch (locale) {
-      //case "server.400.badRequest":
-      //  return 400;
-      case "server.400.forbidden":
-        return 403;
-      case "server.400.notFound":
-        return 404;
-      case "server.400.unauthorized":
-        return 401;
-      default:
-        let categories = locale.split(".");
-        if (categories.length != 0) {
-          if (categories[0] == "server") {
-            return Number(categories[1]);
-          }
-        }
-        
-        return 500;
-    }
-  };
+
 
   toObject() {
     console.log('toObject was called') // temp
