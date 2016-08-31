@@ -1,6 +1,6 @@
 let expect = require('chai').expect,
 	test = require('../examples/better-example.js'),
-	REMIE = require('../libs/index.js')
+	RichError = require('../libs/RichError.js')
 
 describe('Rich-Error', function(){
 	it('REMIE is not null', function(){
@@ -16,6 +16,6 @@ describe('Rich-Error', function(){
 
 describe('Rich-Error', function(){
 	it('REMIE is an instance of Rich Error', function(){
-		expect(test).to.be.an.instanceof(REMIE);
+		expect(test).to.be.an.instanceof(RichError);
 	});
 });

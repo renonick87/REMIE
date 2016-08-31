@@ -70,7 +70,6 @@ class REMIE {
     if (richError.internalMessage) {
       this.on(RichError.internalMessage); //signals listener in example
     }
-    console.log(new RichError(err, options, i18next, locale))
     return new RichError(err, options, i18next, locale)
   }
 
