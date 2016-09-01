@@ -12,6 +12,7 @@ var inherits = require('util').inherits;
   err.code = 'wooh!'
   err.internalMessage = 'internal message1'
 
+remie.i18next= i18next
 //console.log(remie, '2')
 inherits(REMIE, EventEmitter.EventEmitter)
 
@@ -19,6 +20,7 @@ inherits(REMIE, EventEmitter.EventEmitter)
 //let error = richError.create("Something went wrong", {});
 let error2 = remie.create("Something else went wrong", {});
 //let error3 = richError.create("Oh crap, what now", {});
+console.log(JSON.stringify(error2))
 console.log(error2)
 
 remie.on('on-internal-error', function(err){
