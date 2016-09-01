@@ -61,8 +61,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "test": "mocha test/index.test.js",
-    "test:single": "istanbul cover -x * .test.js _mocha -- -R spec test/index.test.js"
+    "test": "mocha test/index.test.js"
   },
   "version": "0.0.1"
 }
