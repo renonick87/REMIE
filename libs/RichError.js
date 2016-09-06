@@ -63,7 +63,7 @@ class RichError{
       };
       return undefined
     } else {
-      if (err instanceof RichError) {
+      if (err instanceof RichError) { // error here when testing
         self.set(err.toObject());
       } else {
         if (err instanceof Error) {

@@ -2,10 +2,10 @@ let expect = require('chai').expect,
 	RichError = require('../libs/RichError.js'),
 	REMIE = require('../libs/index.js'),
 //	error = require('../examples/better-example.js')
-	remie = new REMIE('Something went wrong'), // used to call REMIE methods
 	options = {};
-	options.internalMessage = "I'm the internal message for developer eyes only"
-	options.code = 'server.400.forbidden'
+	options.internalMessage = "I'm the internal message for developer eyes only",
+	options.code = 'server.400.forbidden',
+	remie = new REMIE('Something went wrong', options), // used to call REMIE methods, need create an instance of REMIE with RichError properties
 	exRemie = remie.create('Something went wrong', options), // used to call Rich Error methods
 
 	console.log(exRemie)/*
@@ -22,10 +22,9 @@ let err = {}
 err.code = 'server.400.notFound'
 err.message = 'message in an error'
 err.stack = 'stack would go here'
-
 let objct = remie.toObject(exRemie)
-let copy = remie.copy(exRemie)
-console.log(copy)
+let copy = remie.copy(remie) // need to create error: code, message, stack, etc. properties
+//console.log(copy)
 	
 //causes and catches an error
 /*try {
