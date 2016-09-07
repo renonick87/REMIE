@@ -2,11 +2,15 @@
 standardizes errors across micro-services
 
 ```js
-var remie = require('remie')
+let richError = require('REMIE'),
+	remie = new richError(err, options, locale), 
+	exRemie = remie.create
 ```
 
 ## Installation (currently waiting for npm support to transfer ownership)
-```$ npm install remie```
+```bash
+$ npm install remie
+```
 
 ## Examples
 First, clone the REMIE repo and install any dependencies:
@@ -19,6 +23,7 @@ Then run an example:
 ```bash
 $ node examples/better-example
 ```
+
 
 ## Parameters
 | Parameter | Type | Default | Description |
