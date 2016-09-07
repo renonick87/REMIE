@@ -167,6 +167,7 @@ class RichError{
     console.log('set was called') //temp
     // Node.js error object.  Contains two important child attributes "code" and "stack".
     if(richErrorObject.error instanceof Error) {
+      console.log('its an error')
       this.error = richErrorObject.error;
     } else if(richErrorObject.error !== null && typeof richErrorObject.error === 'object') {
       this.error = new Error(richErrorObject.error.message);
@@ -216,12 +217,11 @@ class RichError{
       statusCode: self.statusCode
     };
   };
-
   toResponseObject(options = {}) {
     console.log('toResponseObject was called') //temp
     let self = this,
       obj = {}; 
-    if(self.internalOnly !== true && options.internalOnly !== false) {
+    if(self.internalOnly !== true && options.internalOnly !== false) { 
       if (self.error && options.error !== false) {
         let error = {},
           errorOptions = options.error || {};
@@ -232,7 +232,7 @@ class RichError{
           error.code = self.error.code;
         }
         if (self.error.stack && errorOptions.stack !== false) {
-          error.stack = self.error.stack; //fix this so stack is not all put on one line
+          error.stack = self.error.stack; //fix this so stack is not all put on one line/might not be happening here
         }
         obj.error = error;
       }
