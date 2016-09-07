@@ -140,13 +140,11 @@ describe('Rich-Error', function(){
 	}),
 
 	it('toResponseObject', function() {
-		//options.internalOnly = true
 		let exRich = remie.create('Something went wrong', options)
-		//console.log(exRich)
 		expect(exRich.toResponseObject()).to.be.an('object')
-		//console.log(exRich)
-		expect(exRich.toResponseObject().error).to.include({'message': 'Something went wrong', 'stack': undefined})
-		//expect(exRich.toResponseObject()).to.include({'level': 'error', 'statusCode': 400})
+		expect(exRich.toResponseObject()).to.include({'level': 'error', 'statusCode': 400})
+		expect(exRich.toResponseObject().error).to.include({'message': 'Something went wrong', 'code': 'server.400.forbidden'})
+
 	})
 
 	it('exRich is not null or undefined', function(){
