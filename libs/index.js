@@ -26,7 +26,8 @@ class REMIE {
     //this.setDefault();
     //let event = 'on-internal-error'
     //EventEmitter.call(this)
-    this.create(err, options, locale)
+    //this.create(err, options, locale)
+    //return this.create(err, options, locale)
     return this
   };
 
@@ -54,9 +55,12 @@ class REMIE {
    * ******************** Private Methods
    * ************************************************** */
 
-
-
-  
+/*
+  methodCaller() {
+    console.log('caller was called')
+    return this
+  }
+  */
 
   log(logger) {
     console.log('log was called') //temp
