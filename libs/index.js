@@ -32,7 +32,7 @@ class REMIE {
 
   create(err, options, locale) {
     console.log('create was called')
-    if (richError.internalMessage) {
+    if (RichError.internalMessage) {
       this.on(RichError.internalMessage); //signals listener in example
     }
     return new RichError(err, options, locale)
@@ -47,7 +47,7 @@ class REMIE {
   copy(remie) {
     console.log('copy was called')
     let self = remie //create new remie instance and call toObject on it
-    return new REMIE(remie.toObject(self));
+    return new RichError(remie.toObject(self)); //change to RichError when errors are fixed
   };
 
   /* ************************************************** *
@@ -56,25 +56,7 @@ class REMIE {
 
 
 
-  toObject(remie) {
-    console.log('toObject was called') // temp
-    let self = remie
-    console.log(self)
-    return { //possibly need to restructure to wrok when one or more values is not given
-      error: {
-        code: self.error.code,
-        message: self.error.message,
-        stack: self.error.stack
-      },
-      internalOnly: self.internalOnly,
-      internalMessage: self.internalMessage,
-      level: self.level,
-      messageData: self.messageData,
-      options: self.options,
-      referenceData: self.referenceData,
-      statusCode: self.statusCode
-    };
-  };
+  
 
   log(logger) {
     console.log('log was called') //temp
@@ -198,9 +180,8 @@ util.inherits(REMIE, EventEmitter)
 /* ************************************************** *
  * ******************** Require Other Classes
  * ************************************************** */
-let RichError = require('./RichError.js'),
-  richError = new RichError()
-
+let RichError = require('./RichError.js')
+  //richError = new RichError()
 module.exports = REMIE
 
 const HANDLER_INTERNAL_ERROR = function(err, options, locale) {
