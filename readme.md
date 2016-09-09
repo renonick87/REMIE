@@ -37,8 +37,8 @@ let remie = new (require('remie'))(),
 | toResponseObject | ```options``` | Uses options to return an object with the same properties |
 ## REMIE Methods
 ### call these methods by using remie.method()
-| Method | Parameters | Description | Example |
-|--------|------------|-------------|---------|
+| Method | Parameters | Description |
+|--------|------------|-------------|
 | create | ```err, options``` | Builds a new RichError instance |
 | copy | ```rich``` | Makes a copy of a RichError that has the same necessary properties |
 
