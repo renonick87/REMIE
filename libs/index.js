@@ -31,12 +31,12 @@ class REMIE {
     return this
   };
 
-  create(err, options, locale) {
+  create(err, options) {
     //console.log('create was called')
     if (RichError.internalMessage) {
       this.on(RichError.internalMessage); //signals listener in example
     }
-    return new RichError(err, options, locale)
+    return new RichError(err, options)
   }
 
   static buildInternal(err, options) { 
